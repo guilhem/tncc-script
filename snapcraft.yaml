@@ -1,0 +1,26 @@
+name: tncc-script
+version: '0.0.1'
+summary: wrapper for openconnect and pulse
+description: |
+  Use it like:
+  sudo openconnect --juniper --useragent 'Mozilla/5.0 (Linux) Firefox' --csd-wrapper=tncc-script my_vpn_address
+grade: devel
+
+confinement: devmode
+
+apps:
+  tncc-script:
+    command: python2 tncc-script.py
+
+parts:
+  tncc-script:
+    stage-packages:
+      - libcurl-dev
+      - libssl-dev
+    plugin: python
+    python-version: python2
+    python-packages:
+      - mechanize
+      - urlgrabber
+      - pycurl
+    source: .
